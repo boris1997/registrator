@@ -1,0 +1,217 @@
+@import "../vars&mixins.scss";
+@import "../../../node_modules/sass-rem/rem";
+
+.main {
+  overflow: hidden;
+  min-height: 600px;
+  height: 70vh;
+  color: $mainColor;
+
+  &::before {
+    background-color: #191919;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.65;
+    //  opacity: 0.6;
+    z-index: -1;
+  }
+  &::after {
+    background: url("../../assets/img/main-background-2.png") no-repeat top
+      right/cover;
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    min-height: rem(600px);
+    z-index: -2;
+  }
+
+  &__content {
+    @include flexbox(column, center, center);
+    /* margin-top: rem(50px); */
+    height: 100%;
+  }
+
+  &__left {
+    margin-bottom: rem(50px);
+  }
+  &__item {
+    margin-top: rem(50px);
+  }
+
+  &__f-title {
+    font-size: rem(40px);
+    max-width: rem(880px);
+    text-align: center;
+  }
+  &__row {
+    @include flexbox(row, space-between, center);
+    max-width: rem(580px);
+  }
+
+  &__s-title {
+    font-size: rem(24px);
+  }
+
+  &__icon {
+    font-size: rem(42px);
+  }
+
+  &__img {
+    height: rem(650px);
+  }
+  &__button {
+    height: rem(60px);
+    width: rem(250px);
+    border-radius: rem(50px);
+
+    border: rem(3px) solid $thirdColor;
+  }
+  &__button-inner {
+    left: rem(-2px);
+  }
+  &__button-inner-content {
+    color: $thirdColor;
+    font-weight: 700;
+    border-radius: rem(50px);
+    font-size: rem(20px);
+    &::before {
+      width: rem(400px);
+      height: rem(400px);
+      line-height: rem(400px);
+      left: rem(-80px);
+    }
+    &:hover {
+      color: $mainColor;
+
+      &::before {
+        box-shadow: inset 0 0 0 rem(320px) rgba($thirdColor, 1);
+      }
+    }
+  }
+
+  &__span {
+    color: $thirdColor;
+  }
+
+  @media (max-width: 900px) {
+    &__f-title {
+      font-size: rem(34px);
+    }
+    &__s-title {
+      font-size: rem(20px);
+    }
+    &__row {
+      max-width: rem(500px);
+    }
+    &__icon {
+      font-size: rem(35px);
+    }
+  }
+  @media (max-width: 680px) {
+    &__f-title {
+      font-size: rem(30px);
+    }
+    &__s-title {
+      font-size: rem(18px);
+    }
+    &__row {
+      max-width: rem(450px);
+    }
+  }
+  @media (max-width: 550px) {
+    &__f-title,
+    &__span {
+      font-size: rem(24px);
+    }
+    &__s-title {
+      font-size: rem(16px);
+    }
+    &__row {
+      max-width: rem(390px);
+      font-size: rem(29px);
+    }
+    &__icon {
+      font-size: rem(28px);
+    }
+    &__button {
+      height: rem(45px);
+      width: rem(200px);
+      border-radius: rem(42px);
+
+      border: rem(2.5px) solid $thirdColor;
+    }
+    &__button-inner {
+      left: rem(-2px);
+    }
+    &__button-inner-content {
+      color: $thirdColor;
+      font-weight: 700;
+      border-radius: rem(42px);
+      font-size: rem(17px);
+      &::before {
+        width: rem(300px);
+        height: rem(300px);
+        line-height: rem(300px);
+        left: rem(-50px);
+      }
+      &:hover {
+        color: $mainColor;
+
+        &::before {
+          box-shadow: inset 0 0 0 rem(320px) rgba($thirdColor, 1);
+        }
+      }
+    }
+  }
+}
+
+.button {
+  &__call-to-action {
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+  }
+
+  &__call-to-action-inner {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 101.5%;
+    height: 102.5%;
+  }
+
+  &__call-to-action-inner-content {
+    height: 100%;
+    position: relative;
+    @include flexbox(row, center, center);
+    transition: color 0.45s 0.1s ease-out;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      border-radius: 50%;
+      display: block;
+      text-align: center;
+      transition: box-shadow 0.5s ease-out;
+      z-index: -1;
+      box-sizing: border-box;
+    }
+  }
+  &__call-to-action:focus {
+    outline: none;
+  }
+}

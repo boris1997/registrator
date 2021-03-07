@@ -1,0 +1,239 @@
+@import "../vars&mixins.scss";
+
+.sidebar {
+  font-family: "Open Sans";
+  z-index: 2;
+  &__content {
+    height: 100%;
+    @include flexbox(row, space-between, center);
+    z-index: 22;
+  }
+  &__body {
+    /*  flex: 0.5; */
+    height: 100%;
+    width: 30rem;
+    z-index: 1;
+    padding: 1.5rem 1rem;
+    background-color: $mainColor;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.16);
+    overflow: hidden;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+    /*  inset 0px 0px 0px rgba(0, 0, 0, 0.16),
+      inset 0px 0px 0px rgba(0, 0, 0, 0.16); */
+  }
+
+  &__body--active {
+    transform: translateX(0);
+  }
+
+  &__menu {
+    position: relative;
+  }
+
+  &__login-link {
+    width: 5rem !important;
+    position: relative !important;
+    /*     &::before {
+      left: 0.8rem;
+      
+    } */
+    @media (max-width: 550px) {
+      font-size: 1.15rem !important;
+    }
+  }
+}
+
+.mobile-menu {
+  overflow: hidden;
+  &__wrapper {
+    /* transform: translateX(-200px); */
+    margin-top: 1.5rem;
+    position: relative;
+    transition: transform 0.5s ease-in-out;
+  }
+  &__back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 1.5rem;
+    /*   margin-left: 100%; */
+    transform: translateX(100%);
+  }
+
+  &__back--show {
+    transform: translateX(0);
+  }
+
+  &__back--transition {
+    transition: transform 0.5s ease-in-out;
+  }
+
+  &__nested {
+    /* transform: translateX(100%); */
+    position: absolute;
+    top: 3rem;
+    right: -100%;
+    width: 100%;
+  }
+
+  .mobile-menu__nested-margin {
+    margin-top: -3rem;
+  }
+
+  &__nested--active {
+    display: block !important;
+  }
+
+  &__nested--show {
+    transform: translateX(0);
+  }
+
+  &__item {
+    height: 3rem;
+    display: none;
+    border-top: 0.7px solid rgba($color: #000000, $alpha: 0.1);
+  }
+
+  &__item--active {
+    display: block;
+  }
+
+  &__toggler {
+    position: relative;
+    &::after {
+      position: absolute;
+      content: "";
+      mask: url("/assets/svg/icon_chevron-right.svg") no-repeat;
+      mask-size: contain;
+      background-color: #bdbdbd;
+      right: 1rem;
+      height: 1rem;
+      width: 1rem;
+    }
+  }
+  &__link {
+    @include flexbox(row, flex-start, center);
+    height: 100%;
+    width: 100%;
+    color: $secColor;
+    font-size: 1.12rem !important;
+    font-weight: 600;
+  }
+
+  &__item:last-child {
+    border-bottom: 0.7px solid rgba($color: #000000, $alpha: 0.1);
+  }
+}
+
+.back-button {
+  height: 3rem;
+  width: 100%;
+  cursor: pointer;
+  border-top: 0.7px solid rgba($color: #000000, $alpha: 0.1);
+
+  &__title {
+    line-height: 2rem;
+    margin-bottom: 0.2rem;
+  }
+  &__content {
+    position: relative;
+    @include flexbox(row, flex-end, center);
+    width: 4rem;
+    height: 100%;
+    &::before {
+      position: absolute;
+      content: "";
+      mask: url("/assets/svg/icon_chevron-left.svg") no-repeat;
+      mask-size: contain;
+      background-color: $secColor;
+      left: 0;
+      height: 0.7rem;
+      width: 0.7rem;
+    }
+  }
+}
+
+.nested {
+  display: none;
+  &__element {
+    @include flexbox(row, flex-start, center);
+    border-top: 0.7px solid rgba($color: #000000, $alpha: 0.1);
+    height: 3rem;
+  }
+}
+
+.overlay {
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+  height: 100%;
+  flex: 1;
+  background: rgba(0, 0, 0, 0.36);
+  height: 100%;
+  visibility: hidden;
+}
+
+.overlay--show {
+  transition: visibility 0s ease-in-out 0.35s;
+  visibility: visible;
+}
+
+.feedbacks {
+  &__social-media {
+    width: 8rem;
+    margin-top: 2.5rem;
+    margin-left: 0.4rem;
+  }
+  &__socialmedia-link {
+    width: 1.3rem !important;
+    height: 1.3rem !important;
+  }
+
+  &__socialmedia-link:nth-child(2) {
+    width: 1.5rem !important;
+  }
+
+  &__content {
+    margin-top: 2.5rem;
+    height: 3.5rem;
+    @include flexbox(column, space-between, flex-start);
+  }
+
+  &__link {
+    text-decoration: underline;
+    position: relative;
+    &:before {
+      position: absolute;
+      content: "";
+      height: 1rem;
+      left: 0;
+      top: 0.35rem;
+      width: 1rem;
+      mask-size: contain !important;
+    }
+  }
+  &__write-back {
+    &:before {
+      mask-size: contain;
+      background-color: $secColor;
+      width: 1.2rem;
+      mask: url("/assets/svg/icon_message.svg") no-repeat;
+    }
+  }
+  &__boss-connection {
+    &:before {
+      mask-size: contain;
+      background-color: $secColor;
+      top: 0.3rem;
+      mask: url("/assets/svg/icon_user.svg") no-repeat;
+    }
+  }
+
+  &__span {
+    margin-left: 2rem;
+  }
+}

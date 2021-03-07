@@ -1,0 +1,8 @@
+@import "./vars&mixins.scss";
+@import "../../node_modules/sass-rem/rem";
+
+.icon {
+  &__svg {
+    fill: $secColor !important;
+  }
+}

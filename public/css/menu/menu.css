@@ -1,0 +1,113 @@
+.menu {
+  background-color: #000000;
+  color: #ffffff;
+  position: fixed;
+  width: 100%;
+  z-index: 60;
+  /*   &__content {
+    height: rem(70px);
+  } */
+  /* &__items:hover ~ &__items {
+    background-color: $secColor !important;
+  } */
+}
+
+.menu__content, .menu__list, .menu__social-medias {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .menu__nav {
+    display: none;
+  }
+}
+
+.menu__list {
+  height: 4.375rem;
+}
+
+.menu__items {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 33px;
+  height: 2.2rem;
+}
+
+.menu__link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 33px;
+  height: 100%;
+  padding: 0 1rem;
+}
+
+.menu__items:hover, .menu__items--active {
+  height: 2.2rem !important;
+  background-color: #2a75d8 !important;
+}
+
+.menu__hamburger-menu {
+  width: 3.125rem;
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .menu__hamburger-menu {
+    display: block;
+    /*  &__hamburger-menu--active {
+      } */
+  }
+}
+
+.menu__social-medias {
+  width: 7.5rem;
+}
+
+.menu__list {
+  width: 38.75rem;
+}
+
+.menu__link {
+  color: #ffffff;
+}
+
+.social-media__icon {
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+/*# sourceMappingURL=menu.css.map */

@@ -1,0 +1,86 @@
+@import "../vars&mixins.scss";
+@import "../../../node_modules/sass-rem/rem";
+
+.menu {
+  background-color: $secColor;
+  color: $mainColor;
+  position: fixed;
+  width: 100%;
+  z-index: 60;
+
+  &__content,
+  &__list,
+  &__social-medias {
+    @include flexbox(row, space-between, center);
+  }
+
+  /*   &__content {
+    height: rem(70px);
+  } */
+
+  &__nav {
+    @media (max-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &__list {
+    height: rem(70px);
+  }
+
+  &__items {
+    height: 100%;
+    @include flexbox(row, center, center);
+    border-radius: 33px;
+    height: 2.2rem;
+  }
+
+  &__link {
+    @include flexbox(row, center, center);
+    border-radius: 33px;
+    height: 100%;
+    padding: 0 1rem;
+  }
+
+  &__items:hover,
+  &__items--active {
+    height: 2.2rem !important;
+    background-color: #2a75d8 !important;
+  }
+
+  /* &__items:hover ~ &__items {
+    background-color: $secColor !important;
+  } */
+
+  // &__link:nth-child(1) {
+  //   @include flexbox(row, center, center);
+  //   height: 100%;
+  //   /*   border-bottom: 5px solid $thirdColor; */
+  // }
+  &__hamburger-menu {
+    width: rem(50px);
+    display: none;
+    @media (max-width: 1024px) {
+      display: block;
+      /*  &__hamburger-menu--active {
+      } */
+    }
+  }
+
+  &__social-medias {
+    width: rem(120px);
+  }
+  &__list {
+    width: rem(620px);
+  }
+  &__link {
+    color: $mainColor;
+  }
+}
+
+.social-media {
+  &__icon {
+    color: $mainColor;
+    font-size: rem(24px);
+  }
+}

@@ -1,0 +1,15 @@
+@import "../vars&mixins.scss";
+@import "../../../node_modules/sass-rem/rem";
+
+.footer {
+  margin-top: rem(150px);
+  background-color: $secColor;
+  color: $mainColor;
+  &__content {
+    height: rem(50px);
+    @include flexbox(row, flex-start, center);
+  }
+  &__span {
+    margin-left: rem(20px);
+  }
+}

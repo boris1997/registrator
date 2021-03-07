@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAIG,AAAD,UAAM,CAAC;EACL,IAAI,ECJG,OAAO,CDIE,UAAU;CAC3B",
+    "sources": [
+        "svg.scss",
+        "vars&mixins.scss",
+        "../../node_modules/sass-rem/_rem.scss"
+    ],
+    "names": [],
+    "file": "svg.css"
+}

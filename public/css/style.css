@@ -1,0 +1,120 @@
+@font-face {
+  font-family: "Gilroy-Black";
+  font-display: swap;
+  /*     src: url("../fonts/") format("woff"), */
+  src: url("../fonts/Gilroy-Black.woff") format("woff"), url("../fonts/Gilroy-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy-Bold";
+  font-display: swap;
+  /*     src: url("../fonts/") format("woff"), */
+  src: url("../fonts/Gilroy-Bold.woff") format("woff"), url("../fonts/Gilroy-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy-Medium";
+  font-display: swap;
+  /*     src: url("../fonts/") format("woff"), */
+  src: url("../fonts/Gilroy-Medium.woff") format("woff"), url("../fonts/Gilroy-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy-Regular";
+  font-display: swap;
+  /*     src: url("../fonts/") format("woff"), */
+  src: url("../fonts/Gilroy-Regular.woff") format("woff"), url("../fonts/Gilroy-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy-SemiBold";
+  font-display: swap;
+  /*     src: url("../fonts/") format("woff"), */
+  src: url("../fonts/Gilroy-SemiBold.woff") format("woff"), url("../fonts/Gilroy-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 550px) {
+  * {
+    font-size: 14px;
+  }
+}
+
+body {
+  background-color: #ffffff;
+  color: #000000;
+  font-family: "Gilroy";
+  /* overflow: hidden; */
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  max-width: 87.5rem;
+  height: 100%;
+  margin: auto;
+  padding: 0 1rem;
+  overflow: hidden;
+}
+
+.section {
+  position: relative;
+}
+
+.page__sidebar {
+  height: calc(100% - 3.4rem);
+  width: 100%;
+  top: 3.375rem;
+  visibility: hidden;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  position: fixed;
+}
+
+.page__sidebar--active {
+  visibility: visible;
+}
+
+.page__title {
+  font-size: 2rem;
+  /* color: #0C6DB2; */
+  color: #000000;
+  position: relative;
+  border-bottom: 1px solid black;
+  line-height: 2.875rem;
+}
+
+@media screen and (max-width: 550px) {
+  .page__title {
+    font-size: 1.6875rem;
+  }
+}
+
+.page--no-scroll {
+  overflow: hidden !important;
+}
+/*# sourceMappingURL=style.css.map */

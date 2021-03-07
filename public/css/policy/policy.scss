@@ -1,0 +1,16 @@
+@import "../vars&mixins.scss";
+@import "../../../node_modules/sass-rem/rem";
+
+.policy {
+  overflow: hidden;
+  margin: 0 auto;
+  position: fixed;
+  display: none;
+  width: rem(300px);
+  z-index: 100;
+  background-color: $mainColor;
+  top: 0;
+
+  &__content {
+  }
+}

@@ -1,0 +1,27 @@
+$mainColor: #ffffff;
+$secColor: #000000;
+$thirdColor: #2a75d8;
+$brownColor: #222222;
+$redColor: #d2001c;
+$yellowColor: #fed600;
+
+// #CF4363 #F9F871
+
+@mixin flexbox($direction, $content, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $content;
+  align-items: $align;
+}
+
+@mixin font($font_name, $file_name, $weight, $style) {
+  @font-face {
+    font-family: $font_name;
+    font-display: swap;
+    /*     src: url("../fonts/") format("woff"), */
+    src: url("../fonts/#{$file_name}.woff") format("woff"),
+      url("../fonts/#{$file_name}.woff2") format("woff2");
+    font-weight: #{$weight};
+    font-style: #{$style};
+  }
+}

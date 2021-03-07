@@ -1,0 +1,94 @@
+@import "../vars&mixins.scss";
+@import "../../../node_modules/sass-rem/rem";
+
+.gallery {
+  margin-top: rem(150px);
+  position: relative;
+  &__content {
+    margin-top: rem(90px);
+    display: grid;
+    grid-column-gap: rem(150px);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: zoom-in;
+  }
+}
+
+.slider {
+  overflow: hidden;
+  margin: 0 auto;
+  position: fixed;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: $mainColor;
+  top: 0;
+  &__body {
+    position: relative;
+  }
+
+  // Slider close button
+
+  // Slider arrows
+
+  &__arrow {
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    height: rem(80px);
+    width: rem(80px);
+    margin: auto;
+    cursor: pointer;
+    position: absolute;
+  }
+
+  &__arrow:nth-child(2) {
+    background-color: $secColor;
+
+    left: rem(16px);
+    mask: url("../../assets/svg/icon_chevronLeft.svg") no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+  &__arrow:nth-child(3) {
+    background-color: $secColor;
+
+    right: rem(16px);
+    mask: url("../../assets/svg/icon_chevronRight.svg") no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+
+  // Slider wrapper
+
+  &__wrapper {
+    @include flexbox(row, space-between, center);
+    transition: transform 0.5s ease-in-out;
+    /* transform: translate(-50%); */
+  }
+
+  &__item {
+    @include flexbox(row, center, center);
+    height: 100vh;
+    min-width: 100vw;
+  }
+
+  /*   &__item:not(:nth-child(1)) {
+    margin-left: 4.5625rem;
+  } */
+  &__img {
+    height: rem(650px);
+    cursor: zoom-out;
+  }
+}
+
+.modal--active {
+  display: block !important;
+}

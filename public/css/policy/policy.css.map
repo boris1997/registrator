@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAGA,AAAA,OAAO,CAAC;EACN,QAAQ,EAAE,MAAM;EAChB,MAAM,EAAE,MAAM;EACd,QAAQ,EAAE,KAAK;EACf,OAAO,EAAE,IAAI;EACb,KAAK,EE0BwB,QAA6B;EFzB1D,OAAO,EAAE,GAAG;EACZ,gBAAgB,ECVN,OAAO;EDWjB,GAAG,EAAE,CAAC;CAIP",
+    "sources": [
+        "policy.scss",
+        "../vars&mixins.scss",
+        "../../../node_modules/sass-rem/_rem.scss"
+    ],
+    "names": [],
+    "file": "policy.css"
+}

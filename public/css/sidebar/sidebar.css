@@ -1,0 +1,338 @@
+.sidebar {
+  font-family: "Open Sans";
+  z-index: 2;
+}
+
+.sidebar__content {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 22;
+}
+
+.sidebar__body {
+  /*  flex: 0.5; */
+  height: 100%;
+  width: 30rem;
+  z-index: 1;
+  padding: 1.5rem 1rem;
+  background-color: #ffffff;
+  -webkit-box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.16);
+          box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  /*  inset 0px 0px 0px rgba(0, 0, 0, 0.16),
+      inset 0px 0px 0px rgba(0, 0, 0, 0.16); */
+}
+
+@media (max-width: 768px) {
+  .sidebar__body {
+    width: 100%;
+  }
+}
+
+.sidebar__body--active {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.sidebar__menu {
+  position: relative;
+}
+
+.sidebar__login-link {
+  width: 5rem !important;
+  position: relative !important;
+  /*     &::before {
+      left: 0.8rem;
+      
+    } */
+}
+
+@media (max-width: 550px) {
+  .sidebar__login-link {
+    font-size: 1.15rem !important;
+  }
+}
+
+.mobile-menu {
+  overflow: hidden;
+}
+
+.mobile-menu__wrapper {
+  /* transform: translateX(-200px); */
+  margin-top: 1.5rem;
+  position: relative;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+}
+
+.mobile-menu__back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 1.5rem;
+  /*   margin-left: 100%; */
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.mobile-menu__back--show {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.mobile-menu__back--transition {
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+}
+
+.mobile-menu__nested {
+  /* transform: translateX(100%); */
+  position: absolute;
+  top: 3rem;
+  right: -100%;
+  width: 100%;
+}
+
+.mobile-menu .mobile-menu__nested-margin {
+  margin-top: -3rem;
+}
+
+.mobile-menu__nested--active {
+  display: block !important;
+}
+
+.mobile-menu__nested--show {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.mobile-menu__item {
+  height: 3rem;
+  display: none;
+  border-top: 0.7px solid rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu__item--active {
+  display: block;
+}
+
+.mobile-menu__toggler {
+  position: relative;
+}
+
+.mobile-menu__toggler::after {
+  position: absolute;
+  content: "";
+  -webkit-mask: url("/assets/svg/icon_chevron-right.svg") no-repeat;
+          mask: url("/assets/svg/icon_chevron-right.svg") no-repeat;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  background-color: #bdbdbd;
+  right: 1rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+.mobile-menu__link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  width: 100%;
+  color: #000000;
+  font-size: 1.12rem !important;
+  font-weight: 600;
+}
+
+.mobile-menu__item:last-child {
+  border-bottom: 0.7px solid rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+  height: 3rem;
+  width: 100%;
+  cursor: pointer;
+  border-top: 0.7px solid rgba(0, 0, 0, 0.1);
+}
+
+.back-button__title {
+  line-height: 2rem;
+  margin-bottom: 0.2rem;
+}
+
+.back-button__content {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 4rem;
+  height: 100%;
+}
+
+.back-button__content::before {
+  position: absolute;
+  content: "";
+  -webkit-mask: url("/assets/svg/icon_chevron-left.svg") no-repeat;
+          mask: url("/assets/svg/icon_chevron-left.svg") no-repeat;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  background-color: #000000;
+  left: 0;
+  height: 0.7rem;
+  width: 0.7rem;
+}
+
+.nested {
+  display: none;
+}
+
+.nested__element {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-top: 0.7px solid rgba(0, 0, 0, 0.1);
+  height: 3rem;
+}
+
+.overlay {
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+  height: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background: rgba(0, 0, 0, 0.36);
+  height: 100%;
+  visibility: hidden;
+}
+
+.overlay--show {
+  -webkit-transition: visibility 0s ease-in-out 0.35s;
+  transition: visibility 0s ease-in-out 0.35s;
+  visibility: visible;
+}
+
+.feedbacks__social-media {
+  width: 8rem;
+  margin-top: 2.5rem;
+  margin-left: 0.4rem;
+}
+
+.feedbacks__socialmedia-link {
+  width: 1.3rem !important;
+  height: 1.3rem !important;
+}
+
+.feedbacks__socialmedia-link:nth-child(2) {
+  width: 1.5rem !important;
+}
+
+.feedbacks__content {
+  margin-top: 2.5rem;
+  height: 3.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.feedbacks__link {
+  text-decoration: underline;
+  position: relative;
+}
+
+.feedbacks__link:before {
+  position: absolute;
+  content: "";
+  height: 1rem;
+  left: 0;
+  top: 0.35rem;
+  width: 1rem;
+  -webkit-mask-size: contain !important;
+          mask-size: contain !important;
+}
+
+.feedbacks__write-back:before {
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  background-color: #000000;
+  width: 1.2rem;
+  -webkit-mask: url("/assets/svg/icon_message.svg") no-repeat;
+          mask: url("/assets/svg/icon_message.svg") no-repeat;
+}
+
+.feedbacks__boss-connection:before {
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  background-color: #000000;
+  top: 0.3rem;
+  -webkit-mask: url("/assets/svg/icon_user.svg") no-repeat;
+          mask: url("/assets/svg/icon_user.svg") no-repeat;
+}
+
+.feedbacks__span {
+  margin-left: 2rem;
+}
+/*# sourceMappingURL=sidebar.css.map */

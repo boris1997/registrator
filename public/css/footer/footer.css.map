@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAGA,AAAA,OAAO,CAAC;EACN,UAAU,EE8BmB,QAA6B;EF7B1D,gBAAgB,ECJP,OAAO;EDKhB,KAAK,ECNK,OAAO;CDclB;;AAPE,AAAD,gBAAU,CAAC;EACT,MAAM,EE0BqB,QAA6B;EDxB1D,OAAO,EAAE,IAAI;EACb,cAAc,EDFK,GAAG;ECGtB,eAAe,EDHS,UAAU;ECIlC,WAAW,EDJyB,MAAM;CACzC;;AACA,AAAD,aAAO,CAAC;EACN,WAAW,EEsBgB,OAA6B;CFrBzD",
+    "sources": [
+        "footer.scss",
+        "../vars&mixins.scss",
+        "../../../node_modules/sass-rem/_rem.scss"
+    ],
+    "names": [],
+    "file": "footer.css"
+}

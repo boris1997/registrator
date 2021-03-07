@@ -1,0 +1,53 @@
+@import "../vars&mixins.scss";
+@import "../../../node_modules/sass-rem/rem";
+
+.work {
+  margin-top: rem(150px);
+  &__content {
+    margin-top: rem(90px);
+    display: grid;
+    grid-column-gap: rem(90px);
+    grid-row-gap: rem(90px);
+    grid-template-columns: repeat(auto-fit, minmax(rem(220px), 1fr));
+    grid-template-rows: repeat(1, 1fr);
+  }
+}
+
+.work-item {
+  @include flexbox(column, space-between, center);
+  position: relative;
+  border-radius: rem(30px);
+  /*   &::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border: rem(1px) solid $secColor;
+    border-radius: rem(30px);
+  } */
+  &__icon {
+    font-size: rem(50px);
+  }
+  &__main {
+    @include flexbox(column, space-between, center);
+    /*  margin-bottom: rem(60px); */
+  }
+  &__title {
+    font-size: rem(24px);
+  }
+  &__text {
+    text-align: center;
+  }
+  &__text,
+  &__title {
+    margin: rem(10px) 0;
+  }
+
+  &__order {
+    @media (max-width: 550px) {
+      font-size: rem(25px);
+    }
+  }
+}

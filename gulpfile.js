@@ -109,12 +109,12 @@ function js() {
         .pipe(browsersync.stream())
 }
 function fontsWoff() {
-    return src(path.src.fonts)
+    src(path.src.fonts)
         .pipe(ttf2woff())
         .pipe(dest(path.build.fonts));
-    /*   return src(path.src.fonts)
-          .pipe(ttf2woff2())
-          .pipe(dest(path.build.fonts)) */
+    return src(path.src.fonts)
+        .pipe(ttf2woff2())
+        .pipe(dest(path.build.fonts))
 }
 /* function fontsWoff2() {
     return src(path.src.fonts)
@@ -167,10 +167,10 @@ function fontsStyle(params) {
 
 function cb() { }
 
-let build = gulp.series(clean, gulp.parallel(js, css, html, images, fontsWoff /* fontsWoff2 */), fontsStyle);
+let build = gulp.series(clean, gulp.parallel(js, css, html, images, fontsWoff /* fontsWoff2 */));
 let watch = gulp.parallel(build, watchFiles, browserSync);
 
-exports.fontsStyle = fontsStyle;
+/* exports.fontsStyle = fontsStyle; */
 exports.fontsWoff = fontsWoff;
 /* exports.fontsWoff2 = fontsWoff2; */
 exports.images = images;

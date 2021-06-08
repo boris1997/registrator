@@ -102,7 +102,7 @@
     display: block;
   }
 
-  &__toggler {
+  /*   &__toggler {
     position: relative;
     &::after {
       position: absolute;
@@ -114,7 +114,7 @@
       height: 1rem;
       width: 1rem;
     }
-  }
+  } */
   &__link {
     @include flexbox(row, flex-start, center);
     height: 100%;
@@ -214,22 +214,6 @@
       top: 0.35rem;
       width: 1rem;
       mask-size: contain !important;
-    }
-  }
-  &__write-back {
-    &:before {
-      mask-size: contain;
-      background-color: $secColor;
-      width: 1.2rem;
-      mask: url("/assets/svg/icon_message.svg") no-repeat;
-    }
-  }
-  &__boss-connection {
-    &:before {
-      mask-size: contain;
-      background-color: $secColor;
-      top: 0.3rem;
-      mask: url("/assets/svg/icon_user.svg") no-repeat;
     }
   }
 

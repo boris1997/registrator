@@ -1,0 +1,38 @@
+@import "../vars&mixins.scss";
+@import "../../../node_modules/sass-rem/rem";
+
+.order {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+
+  &__form {
+    height: 100%;
+    @include flexbox(row, center, center);
+  }
+  &__content {
+    position: relative;
+    max-width: rem(400px);
+    border-radius: rem(8px);
+    padding: rem(20px);
+    box-shadow: rem(-2px) rem(-2px) rem(4px) rgba(0, 0, 0, 0.15),
+      rem(2px) rem(2px) rem(4px) rgba(0, 0, 0, 0.15);
+    @include flexbox(column, flex-start, center);
+    backdrop-filter: blur(10px);
+  }
+  &__title {
+    max-width: rem(400px);
+    margin-top: rem(20px);
+  }
+  &__img {
+    height: rem(80px);
+  }
+
+  &__close {
+    height: rem(40px);
+    right: rem(0);
+  }
+}

@@ -18,7 +18,7 @@
 }
 
 .main::after {
-  background: url("../../assets/img/main-background-2.png") no-repeat top right/cover;
+  background: url("../assets/img/main-background-2-min.webp") no-repeat top right/cover;
   content: "";
   position: absolute;
   width: 100%;

@@ -82,23 +82,32 @@ class Mail {
                 phone: this.phone.value,
                 amount: +this.amount.textContent
             }
-            let xhr = new XMLHttpRequest();
-            xhr.open('POST', '/');
-            xhr.setRequestHeader('content-type', 'application/json');
-            xhr.onload = function () {
-                console.log('oj')
-                alert('success')
-                if (xhr.responseText === 'success') {
-                    alert('success')
-                } else {
-                    console.log('some')
-                }
-            }
-            xhr.send(JSON.stringify(tempParams))
+
+            this.makeRequest(this, tempParams)
+
             /*  emailjs.send('service_989hbji', 'template_ljjqzp6', tempParams).then(res => res) */
         }
 
     }
+
+    makeRequest = (slider, tempParams) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '/');
+        xhr.setRequestHeader('content-type', 'application/json');
+        xhr.onload = function () {
+            if (xhr.responseText === 'success') {
+                const order = document.querySelector('.order');
+                order.classList.add('modal--active');
+
+                slider.removeFields()
+            } else {
+                console.log('some')
+            }
+        }
+        xhr.send(JSON.stringify(tempParams))
+    }
+
+    removeFields = () => this.contactDataArray().map((contactItem, i) => contactItem[1].item.value = '')
 
 
     validateData = () => {
@@ -126,11 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 
-class Scroll {
-    constructor(page, sections, menuItems, hamburgerMenu, sidebar, sidebarBody, sidebarOverlay) {
+class Sidebar {
+    constructor(page, sections, menuItems, mobileMenuItems, hamburgerMenu, sidebar, sidebarBody, sidebarOverlay) {
         this.page = page,
             this.sections = sections,
             this.menuItems = menuItems,
+            this.mobileMenuItems = mobileMenuItems,
             this.index = 0,
             this.sidebar = sidebar,
             this.hamburgerMenu = hamburgerMenu,
@@ -146,6 +156,7 @@ class Scroll {
         }
         this.sidebarOverlay.onclick = () => this.removeSidebar();
         this.hamburgerMenu.onclick = (e) => this.toggleSidebar();
+        this.mobileMenuItems.map(item => item.onclick = () => this.removeSidebar())
     }
 
 
@@ -249,181 +260,270 @@ document.addEventListener('DOMContentLoaded', () => {
     const page = document.querySelector('.page');
     const sections = [...document.querySelectorAll('.section')];
     const menuItems = [...document.querySelectorAll('.menu__items')];
-    const sidebar = document.querySelector('.page__sidebar');
+    const mobileMenuItems = [...document.querySelectorAll('.mobile-menu__item')];
+    const pageSidebar = document.querySelector('.page__sidebar');
     const sidebarBody = document.querySelector('.sidebar__body');
     const sidebarOverlay = document.querySelector('.overlay');
     const hamburgerMenu = document.querySelector('.hamburger-menu__content');
-    const scroll = new Scroll(page, sections, menuItems, hamburgerMenu, sidebar, sidebarBody, sidebarOverlay);
-    scroll.findActiveIndex();
-    scroll.scrollEvent();
-    scroll.menuItemsInit();
-    scroll.sidebarManipulation()
+    const sidebar = new Sidebar(page, sections, menuItems, mobileMenuItems, hamburgerMenu, pageSidebar, sidebarBody, sidebarOverlay);
+    sidebar.findActiveIndex();
+    sidebar.scrollEvent();
+    sidebar.menuItemsInit();
+    sidebar.sidebarManipulation()
 
 })
 
 
 class Slider {
 
-    constructor(arrow, content, galleryImg, sliderImg, main, page, closeBtn, sliderCarousel, btn) {
+    constructor(arrow, content, sliderImg, main) {
         this.arrow = arrow,
             this.content = content,
-            this.galleryImg = galleryImg,
             this.sliderImg = sliderImg,
             this.main = main,
-            this.page = page,
-            this.closeBtn = closeBtn,
-            this.sliderCarousel = sliderCarousel,
-            this.btn = btn
+            this.isDragging = false,
+            this.settings = {
+                'carousel': {
+                    classes: [],
+                    touchEvent: true,
+                    slideAmounts: null,
+                },
+                'fade': {
+                    classes: [],
+                    touschEvent: false,
+                    slideAmounts: 1,
+
+                }
+            }
+        this.currentIndex = 0,
+            this.startPos = 0,
+            this.currentTranslation = 0;
+        this.prevTranslation = 0;
+        this.animationID = 0;
+    }
+    resizeWindow = () => {
+        window.onresize = (e) => {
+            console.log(window.getComputedStyle(this.main))
+            this.getTransformation(e)
+        }
     }
 
-    translateSlides = () => {
-        for (let i = 1; i < content.length; i++) {
-            this.translate();
+    contextMenu = () => {
+        window.oncontextmenu = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            return false
         }
-        window.addEventListener("resize", () => {
-            this.translate();
-        });
+    }
+
+    initDrag = () => {
+        this.content.map((dragableItem, i) => {
+
+            dragableItem.addEventListener('dragstart', (e) => e.preventDefault())
+
+            //touch event
+            dragableItem.addEventListener('touchstart', this.touchStart(i), { passive: true })
+            dragableItem.addEventListener('touchend', (e) => this.touchEnd(e))
+            dragableItem.addEventListener('touchmove', this.touchMove, { passive: true })
+
+
+            //mouse event
+            dragableItem.addEventListener('mousedown', this.touchStart(i), { passive: true })
+            dragableItem.addEventListener('mouseup', (e) => this.touchEnd(e))
+            dragableItem.addEventListener('mousemove', this.touchMove, { passive: true })
+            console.log('ok');
+            console.log(this)
+            dragableItem.addEventListener('mouseleave', (e) => this.isDragging && this.touchEnd(e))
+
+
+        })
+    }
+
+    touchStart = (i) => {
+        /*         console.log(i) */
+        return (event) => {
+            this.content[i].classList.add('carousel__item--dragable');
+            this.main.classList.remove('carousel__wrapper--smooth');
+            this.sliderImg[i].classList.remove('carousel__img--zoom-out');
+            this.currentIndex = i;
+            this.startPos = this.getPositionX(event);
+            this.isDragging = true;
+            this.animationID = requestAnimationFrame(this.animation)
+        }
+    }
+
+    touchEnd = (e) => {
+        cancelAnimationFrame(this.animationID)
+        this.isDragging = false;
+        this.content[this.currentIndex].classList.remove('carousel__item--dragable');
+        this.sliderImg[this.currentIndex].classList.add('carousel__img--zoom-out');
+        this.main.classList.add('carousel__wrapper--smooth');
+        const activeSlide = document.querySelector(".carousel__item--active");
+        if (this.currentTranslation <= 0 && activeSlide.nextElementSibling && Math.abs(this.currentTranslation) > Math.abs(this.prevTranslation) + (activeSlide.clientWidth / 4.5)) {
+            this.toggleAciveElement(activeSlide, activeSlide.nextElementSibling)
+        } else if (this.currentTranslation <= 0 && activeSlide.previousElementSibling && Math.abs(this.currentTranslation) < Math.abs(this.prevTranslation) - (activeSlide.clientWidth / 4.5)) {
+            this.toggleAciveElement(activeSlide, activeSlide.previousElementSibling)
+        }
+        this.getTransformation(e);
 
     }
-    translate = () => {
-        for (let i = 1; i < content.length; i++) {
-            content[i].style.left = content[i].clientWidth * i + "px";
-            console.log(i);
-            console.log(content[i].clientWidth);
+
+    touchMove = (e) => {
+        if (this.isDragging) {
+
+            const currentPosition = this.getPositionX(e);
+            if (this.currentTranslation <= 0 && this.currentTranslation >= (this.content[0].clientWidth * (this.content.length - 1)) * -1) {
+                (this.currentTranslation = this.prevTranslation + currentPosition - this.startPos);
+            }
         }
     }
+    animation = () => {
+
+        console.log(this.isDragging)
+        if (this.isDragging) {
+            this.setSliderPosition();
+            requestAnimationFrame(this.animation)
+        }
+    }
+
+    setSliderPosition = () => {
+        console.log(this.main)
+        this.main.style.transform = `translateX(${this.currentTranslation}px)`
+    }
+
+
+    getPositionX = (event) => event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+
+
 
     getToggleBtns = () => {
-        /* inter = setInterval(this.rigth, 6000); */
-        this.arrow[0].addEventListener("click", () => {
-            this.left();
-            /*  clearInterval(inter); */
+        this.arrow[0].addEventListener("click", (e) => {
+            this.left(e);
         });
 
-        this.arrow[1].addEventListener("click", () => {
-            this.rigth();
-            /*   clearInterval(inter); */
-
+        this.arrow[1].addEventListener("click", (e) => {
+            this.rigth(e);
         });
+    }
+
+
+
+
+    rigth = (e) => {
+        const activeSlide = document.querySelector(".carousel__item--active");
+
+        if (activeSlide.nextElementSibling) {
+            this.toggleAciveElement(activeSlide, activeSlide.nextElementSibling)
+            this.getTransformation(e)
+        } else {
+            this.toggleAciveElement(activeSlide, this.content[0])
+            this.getTransformation(e)
+        }
+
+    }
+
+
+    left = (e) => {
+        const activeSlide = document.querySelector(".carousel__item--active");
+        if (activeSlide.previousElementSibling) {
+
+            this.toggleAciveElement(activeSlide, activeSlide.previousElementSibling)
+            this.getTransformation(e)
+        } else {
+            this.toggleAciveElement(activeSlide, this.main.lastElementChild)
+            this.getTransformation(e)
+        }
+    }
+
+    toggleAciveElement = (active, unActive) => {
+        active.classList.remove("carousel__item--active");
+        unActive.classList.add("carousel__item--active");
+    }
+
+    activeSlide = () => document.querySelector(".carousel__item--active");
+
+    getTransformation = (e) => {
+        const activeSlide = document.querySelector(".carousel__item--active");
+        this.currentIndex = this.content.indexOf(activeSlide);
+        /*    this.slideNumber.textContent = this.currentIndex + 1; */
+        this.prevTranslation = this.currentIndex * -activeSlide.clientWidth;
+        this.currentTranslation = -this.currentIndex * activeSlide.clientWidth;
+        if (e) {
+            console.log('ok')
+        }
+        console.log(this.main)
+        e ? this.main.style.transform = `translate(-${this.currentIndex}00%)` : (this.main.style.transform = `translate(${this.currentTranslation}px)`)
+    }
+
+}
+
+class SliderVisibilty extends Slider {
+    constructor(galleryImg, content, sliderImg, page, modal) {
+        super()
+        this.galleryImg = galleryImg,
+            this.content = content,
+            this.sliderImg = sliderImg,
+            this.page = page,
+            this.modal = modal
     }
 
     initGalleryImg = () => {
         this.galleryImg.map(galleryImage => galleryImage.onclick = (e) => this.showSlider(e, galleryImage))
     }
 
-    initSliderImg = () => {
-        this.sliderImg.map(sliderImage => sliderImage.onclick = (e) => this.hideSlider())
-    }
 
     initCloseBtn = () => {
-        this.closeBtn.onclick = (e) => this.hideSlider()
+        this.modal.map(item => item.onclick = (e) => { console.log(e); this.hideSlider(e, item) })
     }
 
     showSlider = (e, galleryImage) => {
-        this.sliderCarousel.classList.add('modal--active');
+        console.log(this)
+        this.modal[0].classList.add('modal--active');
+        this.sliderImg[this.galleryImg.indexOf(galleryImage)].classList.add('carousel__img--zoom-out')
         this.page.classList.add('page--no-scroll');
-        this.getTransformation(galleryImage);
-        const activeSlide = document.querySelector(".slider__item--active");
-        activeSlide.classList.remove('slider__item--active');
-        console.log(this.content[this.galleryImg.indexOf(galleryImage)])
-        this.content[this.galleryImg.indexOf(galleryImage)].classList.add('slider__item--active');
+        const activeSlide = document.querySelector(".carousel__item--active");
+        this.toggleAciveElement(activeSlide, this.content[this.galleryImg.indexOf(galleryImage)]);
+
     }
 
-    hideSlider = () => {
-        const modalActive = document.querySelector('.modal--active');
-        this.page.classList.remove('page--no-scroll');
-        modalActive.classList.remove('modal--active');
-    }
-
-    showNeededSLide = () => {
-        this.content.forEach(el => {
-            if (content.indexOf(el) === toggleBtn.indexOf(this)) {
-                clearInterval(inter);
-                main.style.transform = 'translate(-' + content.indexOf(el) + '00%)'
-            }
-        })
-        toggleBtn.forEach(item => {
-            if (toggleBtn.indexOf(item) === toggleBtn.indexOf(this)) {
-                item.classList.add('active-toggle')
-            } else {
-                item.classList.remove('active-toggle')
-
-            }
-        })
-    }
-
-
-    rigth = () => {
-        /* if (slider.classList.contains('show')) {
-                slider.classList.remove('show')
-                slider.nextElementSibling.classList.add('show')
-            } */
-
-        const activeSlide = document.querySelector(".slider__item--active");
-
-        if (activeSlide.nextElementSibling) {
-            activeSlide.classList.remove("slider__item--active");
-            activeSlide.nextElementSibling.classList.add("slider__item--active");
-            this.main.style.transform += "translate(-100%)";
-
-            console.log(activeSlide);
-        } else {
-            activeSlide.classList.remove("slider__item--active");
-            this.content[0].classList.add("slider__item--active");
-            this.main.style.transform = "translate(0)";
+    hideSlider = (e, item) => {
+        if ((this.startPos === e.clientX && e.target.classList.contains('carousel__img')) || e.target.classList.contains('button__close')) {
+            item.classList.remove('modal--active');
+            this.page.classList.contains('page--no-scroll') && this.page.classList.remove('page--no-scroll')
         }
-
     }
-
-
-    left = () => {
-        const activeSlide = document.querySelector(".slider__item--active");
-        if (activeSlide.previousElementSibling) {
-            activeSlide.classList.remove("slider__item--active");
-            activeSlide.previousElementSibling.classList.add("slider__item--active");
-            this.main.style.transform += "translate(100%)";
-        } else {
-            activeSlide.classList.remove("slider__item--active");
-            this.main.lastElementChild.classList.add("slider__item--active");
-            this.main.style.transform = "translate(-300%)";
-        }
-        console.log(activeSlide);
-    }
-
-    getTransformation = (activeSlide) => {
-        console.log(activeSlide)
-        console.log(this.content.indexOf(activeSlide))
-        this.main.style.transform = 'translate(-' + this.galleryImg.indexOf(activeSlide) + '00%)'
-    }
-    /*   checkClass(item) {
-          content.forEach(el => {
-              if (el.classList.contains('slider__item--active')) {
-                  console.log(el)
-                  item.style.background = '#2b2b2b'
-              } else {
-                  item.style.background = 'none'
-              }
-          })
-      } */
 }
 
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const arrow = [...document.querySelectorAll(".slider__arrow")];
-    const content = [...document.querySelectorAll(".slider__item")];
-    const sliderImg = [...document.querySelectorAll(".slider__img")];
+    const arrow = [...document.querySelectorAll(".carousel__toggler")];
+    const content = [...document.querySelectorAll(".carousel__item")];
+    const sliderImg = [...document.querySelectorAll(".carousel__img")];
     const galleryImg = [...document.querySelectorAll(".gallery__img")];
     const page = document.querySelector(".page");
-    const closeBtn = document.querySelector(".button__close");
-    const sliderCarousel = document.querySelector(".slider");
-    const main = document.querySelector(".slider__wrapper");
-    const btn = document.querySelectorAll(".btn");
-    const slider = new Slider(arrow, content, galleryImg, sliderImg, main, page, closeBtn, sliderCarousel, btn);
+    const modal = [...document.querySelectorAll(".modal")];
+    const main = document.querySelector(".carousel__wrapper");
+    const slider = new Slider(arrow, content, sliderImg, main);
+    const sliderVis = new SliderVisibilty(galleryImg, content, sliderImg, page, modal);
     /* slider.translateSlides(); */
     slider.getToggleBtns();
-    slider.initGalleryImg();
-    slider.initSliderImg();
-    slider.initCloseBtn();
+    slider.initDrag();
+    // slider.contextMenu();
+    sliderVis.initGalleryImg();
+    sliderVis.initCloseBtn();
 
 })
+
+
+/* playProjectVideo = (video) => {
+    video.map(item => {
+        item.play();
+        item.onended = () => item.play()
+    })
+}
+
+const video = [...document.querySelectorAll('.video__gif')];
+const vid = new Video
+
+playProjectVideo(video) */

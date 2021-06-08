@@ -1,8 +1,9 @@
-class Scroll {
-    constructor(page, sections, menuItems, hamburgerMenu, sidebar, sidebarBody, sidebarOverlay) {
+class Sidebar {
+    constructor(page, sections, menuItems, mobileMenuItems, hamburgerMenu, sidebar, sidebarBody, sidebarOverlay) {
         this.page = page,
             this.sections = sections,
             this.menuItems = menuItems,
+            this.mobileMenuItems = mobileMenuItems,
             this.index = 0,
             this.sidebar = sidebar,
             this.hamburgerMenu = hamburgerMenu,
@@ -18,6 +19,7 @@ class Scroll {
         }
         this.sidebarOverlay.onclick = () => this.removeSidebar();
         this.hamburgerMenu.onclick = (e) => this.toggleSidebar();
+        this.mobileMenuItems.map(item => item.onclick = () => this.removeSidebar())
     }
 
 
@@ -121,14 +123,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const page = document.querySelector('.page');
     const sections = [...document.querySelectorAll('.section')];
     const menuItems = [...document.querySelectorAll('.menu__items')];
-    const sidebar = document.querySelector('.page__sidebar');
+    const mobileMenuItems = [...document.querySelectorAll('.mobile-menu__item')];
+    const pageSidebar = document.querySelector('.page__sidebar');
     const sidebarBody = document.querySelector('.sidebar__body');
     const sidebarOverlay = document.querySelector('.overlay');
     const hamburgerMenu = document.querySelector('.hamburger-menu__content');
-    const scroll = new Scroll(page, sections, menuItems, hamburgerMenu, sidebar, sidebarBody, sidebarOverlay);
-    scroll.findActiveIndex();
-    scroll.scrollEvent();
-    scroll.menuItemsInit();
-    scroll.sidebarManipulation()
+    const sidebar = new Sidebar(page, sections, menuItems, mobileMenuItems, hamburgerMenu, pageSidebar, sidebarBody, sidebarOverlay);
+    sidebar.findActiveIndex();
+    sidebar.scrollEvent();
+    sidebar.menuItemsInit();
+    sidebar.sidebarManipulation()
 
 })

@@ -6,7 +6,6 @@
   font-weight: 900;
   font-style: normal;
 }
-
 @font-face {
   font-family: "Gilroy-Bold";
   font-display: swap;
@@ -15,7 +14,6 @@
   font-weight: 700;
   font-style: normal;
 }
-
 @font-face {
   font-family: "Gilroy-Medium";
   font-display: swap;
@@ -24,7 +22,6 @@
   font-weight: 500;
   font-style: normal;
 }
-
 @font-face {
   font-family: "Gilroy-Regular";
   font-display: swap;
@@ -33,7 +30,6 @@
   font-weight: 400;
   font-style: normal;
 }
-
 @font-face {
   font-family: "Gilroy-SemiBold";
   font-display: swap;
@@ -42,7 +38,6 @@
   font-weight: 600;
   font-style: normal;
 }
-
 * {
   padding: 0;
   margin: 0;
@@ -51,12 +46,11 @@
   scroll-behavior: smooth;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 768px) {
   * {
     font-size: 14px;
   }
 }
-
 body {
   background-color: #ffffff;
   color: #000000;
@@ -94,11 +88,9 @@ li {
   transition: all 0.3s ease-in-out;
   position: fixed;
 }
-
 .page__sidebar--active {
   visibility: visible;
 }
-
 .page__title {
   font-size: 2rem;
   /* color: #0C6DB2; */
@@ -107,7 +99,6 @@ li {
   border-bottom: 1px solid black;
   line-height: 2.875rem;
 }
-
 @media screen and (max-width: 550px) {
   .page__title {
     font-size: 1.6875rem;

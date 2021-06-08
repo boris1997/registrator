@@ -2,7 +2,7 @@
   "name": "src",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "./server/server.js",
   "dependencies": {
     "-": "^0.0.1",
     "body-parser": "^1.19.0",
@@ -16,6 +16,7 @@
     "browser-sync": "^2.26.14",
     "del": "^6.0.0",
     "dotenv": "^8.2.0",
+    "gifify": "^2.4.3",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-clean-css": "^4.3.0",
@@ -29,11 +30,13 @@
     "gulp-ttf2woff": "^1.1.1",
     "gulp-ttf2woff2": "^4.0.1",
     "gulp-uglify-es": "^2.0.0",
-    "gulp-uglifyes": "^0.2.1"
+    "gulp-uglifyes": "^0.2.1",
+    "gulp-webp": "^4.0.1",
+    "videofy": "0.0.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js",
+    "dev": "nodemon ./server/server.js",
     "start": "node server.js"
   },
   "author": "",

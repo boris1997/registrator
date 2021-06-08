@@ -73,6 +73,19 @@
 
 .mobile-menu {
   overflow: hidden;
+  /*   &__toggler {
+    position: relative;
+    &::after {
+      position: absolute;
+      content: "";
+      mask: url("/assets/svg/icon_chevron-right.svg") no-repeat;
+      mask-size: contain;
+      background-color: #bdbdbd;
+      right: 1rem;
+      height: 1rem;
+      width: 1rem;
+    }
+  } */
 }
 
 .mobile-menu__wrapper {
@@ -136,23 +149,6 @@
 
 .mobile-menu__item--active {
   display: block;
-}
-
-.mobile-menu__toggler {
-  position: relative;
-}
-
-.mobile-menu__toggler::after {
-  position: absolute;
-  content: "";
-  -webkit-mask: url("/assets/svg/icon_chevron-right.svg") no-repeat;
-          mask: url("/assets/svg/icon_chevron-right.svg") no-repeat;
-  -webkit-mask-size: contain;
-          mask-size: contain;
-  background-color: #bdbdbd;
-  right: 1rem;
-  height: 1rem;
-  width: 1rem;
 }
 
 .mobile-menu__link {
@@ -312,24 +308,6 @@
   width: 1rem;
   -webkit-mask-size: contain !important;
           mask-size: contain !important;
-}
-
-.feedbacks__write-back:before {
-  -webkit-mask-size: contain;
-          mask-size: contain;
-  background-color: #000000;
-  width: 1.2rem;
-  -webkit-mask: url("/assets/svg/icon_message.svg") no-repeat;
-          mask: url("/assets/svg/icon_message.svg") no-repeat;
-}
-
-.feedbacks__boss-connection:before {
-  -webkit-mask-size: contain;
-          mask-size: contain;
-  background-color: #000000;
-  top: 0.3rem;
-  -webkit-mask: url("/assets/svg/icon_user.svg") no-repeat;
-          mask: url("/assets/svg/icon_user.svg") no-repeat;
 }
 
 .feedbacks__span {

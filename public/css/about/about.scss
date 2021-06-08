@@ -32,3 +32,29 @@
     width: rem(50px);
   }
 }
+
+.video {
+  margin-top: rem(110px);
+  @include flexbox(row, space-between, center);
+  @media (max-width: 709px) {
+    margin-top: rem(70px);
+    @include flexbox(column, space-between, center);
+    &__item {
+      width: 100%;
+    }
+    &__item:nth-child(2) {
+      margin-top: rem(20px);
+    }
+  }
+  &__item {
+    width: 48.5%;
+    @include flexbox(column, center, flex-end);
+  }
+
+  &__item > &__title {
+    align-self: flex-start;
+  }
+  &__gif {
+    width: 100%;
+  }
+}

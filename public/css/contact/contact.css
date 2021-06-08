@@ -20,37 +20,14 @@
   margin-top: 6.25rem;
 }
 
-@media (max-width: 950px) {
-  .contact__content {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  .contact__form {
-    -webkit-box-ordinal-group: 2;
-        -ms-flex-order: 1;
-            order: 1;
-  }
-}
-
 .contact__title {
   text-align: center;
   font-size: 1.75rem;
 }
 
 .contact__form {
-  -webkit-box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.15), 2px 2px 4px rgba(0, 0, 0, 0.15);
-          box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.15), 2px 2px 4px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: -0.125rem -0.125rem 0.25rem rgba(0, 0, 0, 0.15), 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
+          box-shadow: -0.125rem -0.125rem 0.25rem rgba(0, 0, 0, 0.15), 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.15);
   border-radius: 30px;
   margin-bottom: 1.25rem;
   padding: 2.5rem 1.875rem;
@@ -97,6 +74,7 @@
 }
 
 .contact__button {
+  /*  @include buttonBR(rem(50px), 100%, rem(50px), rem(3px), $ ) */
   height: 3.125rem;
   width: 100%;
   border-radius: 3.125rem;
@@ -139,6 +117,35 @@
 .contact__button-inner-content:hover::before {
   -webkit-box-shadow: inset 0 0 0 20rem #2a75d8;
           box-shadow: inset 0 0 0 20rem #2a75d8;
+}
+
+@media (max-width: 950px) {
+  .contact__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .contact__form {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+}
+
+@media (max-width: 350px) {
+  .contact__input, .contact__btn {
+    width: 16.25rem;
+  }
 }
 
 .counter {
@@ -248,7 +255,7 @@
 }
 
 .offer__title {
-  font-size: 1.5625rem;
+  font-size: 1.375rem;
 }
 
 .offer__body {
@@ -265,7 +272,7 @@
 
 @media (max-width: 550px) {
   .offer__span {
-    font-size: 1.5625rem;
+    font-size: 1.375rem;
   }
 }
 

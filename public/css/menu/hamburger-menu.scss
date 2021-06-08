@@ -1,6 +1,7 @@
 @import "../vars&mixins.scss";
 
 .hamburger-menu {
+  cursor: pointer;
   &__content {
     width: 100%;
     height: 100%;

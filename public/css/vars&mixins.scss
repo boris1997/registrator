@@ -7,6 +7,26 @@ $yellowColor: #fed600;
 
 // #CF4363 #F9F871
 
+// @include grid(/* m-top */, /* grg */, /* gcg */, /* rows */ , /* rw */, /* auto-fit */, /* min */, /* max */ )
+
+@mixin grid($margin, $rowGap, $columnGap, $rows, $rowWidth, $auto, $min, $max) {
+  margin-top: $margin;
+  display: grid;
+  grid-row-gap: $rowGap;
+  grid-column-gap: $columnGap;
+  grid-template: repeat($rows, $rowWidth) / repeat($auto, minmax($min, $max));
+}
+
+@mixin position($position, $content, $top, $bottom, $left, $right, $margin) {
+  position: $position;
+  content: $content;
+  top: $top;
+  bottom: $bottom;
+  left: $left;
+  right: $right;
+  margin: $margin;
+}
+
 @mixin flexbox($direction, $content, $align) {
   display: flex;
   flex-direction: $direction;

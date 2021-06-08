@@ -49,23 +49,32 @@ class Mail {
                 phone: this.phone.value,
                 amount: +this.amount.textContent
             }
-            let xhr = new XMLHttpRequest();
-            xhr.open('POST', '/');
-            xhr.setRequestHeader('content-type', 'application/json');
-            xhr.onload = function () {
-                console.log('oj')
-                alert('success')
-                if (xhr.responseText === 'success') {
-                    alert('success')
-                } else {
-                    console.log('some')
-                }
-            }
-            xhr.send(JSON.stringify(tempParams))
+
+            this.makeRequest(this, tempParams)
+
             /*  emailjs.send('service_989hbji', 'template_ljjqzp6', tempParams).then(res => res) */
         }
 
     }
+
+    makeRequest = (slider, tempParams) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '/');
+        xhr.setRequestHeader('content-type', 'application/json');
+        xhr.onload = function () {
+            if (xhr.responseText === 'success') {
+                const order = document.querySelector('.order');
+                order.classList.add('modal--active');
+
+                slider.removeFields()
+            } else {
+                console.log('some')
+            }
+        }
+        xhr.send(JSON.stringify(tempParams))
+    }
+
+    removeFields = () => this.contactDataArray().map((contactItem, i) => contactItem[1].item.value = '')
 
 
     validateData = () => {

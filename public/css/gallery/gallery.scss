@@ -18,13 +18,19 @@
     object-fit: cover;
     cursor: zoom-in;
   }
+
+  @media (max-width: 800px) {
+    &__img {
+      justify-self: center;
+      width: 80%;
+    }
+  }
 }
 
-.slider {
+.carousel {
   overflow: hidden;
   margin: 0 auto;
   position: fixed;
-  display: none;
   width: 100vw;
   height: 100vh;
   z-index: 100;
@@ -34,11 +40,19 @@
     position: relative;
   }
 
+  &__wrapper {
+    @include flexbox(row, space-between, center);
+
+    /* transform: translate(-50%); */
+  }
+  &__wrapper--smooth {
+    transition: transform 0.5s ease-in-out !important;
+  }
   // Slider close button
 
   // Slider arrows
 
-  &__arrow {
+  &__toggler {
     top: 0;
     bottom: 0;
     z-index: 100;
@@ -48,8 +62,31 @@
     cursor: pointer;
     position: absolute;
   }
+  @media (max-width: 950px) {
+    &__toggler {
+      display: none;
+    }
+    &__img {
+      height: 80vw;
+    }
+    &__close {
+      height: rem(60px);
+      right: 0;
+    }
+  }
 
-  &__arrow:nth-child(2) {
+  // @media (max-width: 550px) {
+  //   &__img {
+  //     height: 80%;
+  //   }
+  // }
+  // @media (max-width: 450px) {
+  //   &__img {
+  //     height: 60%;
+  //   }
+  // }
+
+  &__toggler:nth-child(2) {
     background-color: $secColor;
 
     left: rem(16px);
@@ -57,7 +94,7 @@
     mask-position: center;
     mask-size: contain;
   }
-  &__arrow:nth-child(3) {
+  &__toggler:nth-child(3) {
     background-color: $secColor;
 
     right: rem(16px);
@@ -68,16 +105,14 @@
 
   // Slider wrapper
 
-  &__wrapper {
-    @include flexbox(row, space-between, center);
-    transition: transform 0.5s ease-in-out;
-    /* transform: translate(-50%); */
-  }
-
   &__item {
     @include flexbox(row, center, center);
     height: 100vh;
     min-width: 100vw;
+  }
+
+  &__item--dragable {
+    cursor: grabbing !important;
   }
 
   /*   &__item:not(:nth-child(1)) {
@@ -85,8 +120,14 @@
   } */
   &__img {
     height: rem(650px);
+  }
+  &__img--zoom-out {
     cursor: zoom-out;
   }
+}
+
+.modal {
+  display: none !important;
 }
 
 .modal--active {

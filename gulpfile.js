@@ -178,6 +178,7 @@ function fontsStyle(params) {
             }
         })
     }
+    params()
 }
 
 function cb() { }
